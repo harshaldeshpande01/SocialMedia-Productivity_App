@@ -14,7 +14,18 @@ export default function Post({
   comments,
 }) {
   const [user, setUser] = useContext(UserContext).user;
+
+  var sameUser;
+  if(user)
+    sameUser = user.email.includes(username);
+  else
+    sameUser = false;
+
   const deletePost = () => {
+    console.log(user.email);
+    console.log(username);
+    console.log(id);
+    if(sameUser) {
     // delete the image from firebase storage
 
     // get ref to the image file we like to delete
@@ -40,6 +51,7 @@ export default function Post({
       .catch(function (error) {
         console.log(`Error post info delete ${error}`);
       });
+    }
   };
   return (
     <div className="post">
@@ -48,9 +60,16 @@ export default function Post({
           <img className="post__profilePic" src={profileUrl} />
           <u><p style={{ marginLeft: "8px" }}>{username}</p></u>
         </div>
-        <button onClick={deletePost} className="post__delete">
-          Delete
-        </button>
+        {sameUser ?
+          // {sameUser ?
+          <button onClick={deletePost} className="post__delete">
+            Delete
+          </button>
+          // : <></>
+          // }
+          :
+          <></>
+        }
       </div>
 
       <div className="post__center">

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import "./style.css";
 import { signInWithGoogle } from "../../services/auth";
 import { UserContext } from "../../contexts/user";
-import Button from 'react-bootstrap/Button';
 
 export default function SignInBtn() {
   const [, setUser] = useContext(UserContext).user;
