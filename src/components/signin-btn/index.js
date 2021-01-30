@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import "./style.css";
 import { signInWithGoogle } from "../../services/auth";
 import { UserContext } from "../../contexts/user";
+import {Button} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function SignInBtn() {
   const [, setUser] = useContext(UserContext).user;
@@ -12,8 +14,6 @@ export default function SignInBtn() {
   };
 
   return (
-    <button className="button button1" onClick={signInBtnClick}>
-      Sign In
-    </button>
+    <Button variant="primary" onClick={signInBtnClick}>Sign in</Button>
   );
 }

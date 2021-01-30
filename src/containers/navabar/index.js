@@ -10,7 +10,7 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <p>SocioProd</p>
+      <span style={{fontSize: "20px"}}>SocioProd</span>
 
       {user ? (
         <div>
