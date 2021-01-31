@@ -1,13 +1,12 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useContext} from "react";
 import "./style.css";
 import { UserContext } from "../../contexts/user";
 import { Redirect } from "react-router-dom";
-import {SignInBtn} from "../../components/index"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {auth} from '../../firebase';
 import {Link} from 'react-router-dom';
 
-export default function Login() {
+export default function SignUp() {
 
     const [user, setUser] = useContext(UserContext).user;
     const [email, setEmail] = useState("");
@@ -17,9 +16,9 @@ export default function Login() {
         return email.length > 0 && password.length > 0;
     }
 
-    const handleLogin = () => {
+    const handleSignUp = () => {
         let newUser;
-        auth.signInWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
         .then((res) => {
             console.log(res.user);
             newUser = res.user;
@@ -41,7 +40,7 @@ export default function Login() {
         <div className="joinInnerContainer">
           <p style={{fontFamily: "monospace"}} className="heading brand-logo ">SocioProd</p>
           <p className="head">
-            <Link style={{color: "white"}} to="/Signup"> Don't have an accout? Signup</Link>
+            <Link style={{color: "white"}} to="/"> Already have an accout? Login</Link>
           </p>
           <div>
             <input 
@@ -55,10 +54,9 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="joinInput mt-20" type="password" 
             />
           </div>
-            <button className={'button mt-20 pointer'} type="submit" onClick={handleLogin} disabled={!validateForm()}>Login</button>
-            <SignInBtn />
+            <button className={'button mt-20 pointer'} type="submit" onClick={handleSignUp} disabled={!validateForm()}>SignUp</button>
         </div>
       </div>
-      </>   
+      </>
     );
 }

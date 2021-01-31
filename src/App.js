@@ -1,5 +1,5 @@
 import "./App.css";
-import { Home, Login } from "./pages";
+import { Home, Login, SignUp, Deadlines, Courses } from "./pages";
 import { UserContextProvider } from "./contexts/user";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -8,9 +8,10 @@ function App() {
     <UserContextProvider>
       <Router>
             <Route path="/" exact component={Login} />
+            <Route path="/SignUp" exact component={SignUp} />
             <Route path="/home" exact component={Home} />
-            {/* <Route path="/home" exact component={Deadlines} />
-            <Route path="/home" exact component={Courses} /> */}
+            <Route path="/deadlines" exact component={Deadlines} />
+            <Route path="/courses" exact component={Courses} />
       </Router>
     </UserContextProvider>
   );
