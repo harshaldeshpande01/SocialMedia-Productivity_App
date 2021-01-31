@@ -11,9 +11,10 @@ export default function SignInBtn() {
   const signInBtnClick = async () => {
     let userBySignIn = await signInWithGoogle();
     if (userBySignIn) setUser(userBySignIn);
+    // localStorage.setItem('user', userBySignIn)
   };
 
   return (
-    <Button variant="primary" onClick={signInBtnClick}>Sign in</Button>
+    <Button block size="lg" variant="success" onClick={signInBtnClick}>Sign in with Google</Button>
   );
 }
