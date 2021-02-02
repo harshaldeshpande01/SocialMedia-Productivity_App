@@ -10,8 +10,6 @@ function App() {
             <Route path="/" exact component={Login} />
             <Route path="/SignUp" exact component={SignUp} />
             <Route path="/home" exact component={Home} />
-            <Route path="/deadlines" exact component={Deadlines} />
-            <Route path="/courses" exact component={Courses} />
       </Router>
     </UserContextProvider>
   );

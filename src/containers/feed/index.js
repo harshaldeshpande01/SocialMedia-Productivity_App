@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import { CreatePost} from "../index";
 import { Post } from "..";
 import { db } from "../../firebase";
 
@@ -13,6 +14,8 @@ export default function Feed() {
   }, []);
 
   return (
+    <>
+    <CreatePost />
     <div className="feed">
       {posts.map(({ id, post }) => {
         return (
@@ -28,5 +31,6 @@ export default function Feed() {
         );
       })}
     </div>
+    </>
   );
 }
