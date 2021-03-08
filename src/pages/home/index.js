@@ -13,17 +13,6 @@ import 'react-tabs/style/react-tabs.css';
 export default function Home() {
 
   const [user, setUser] = useContext(UserContext).user;
-  // const [selected, setSelected] = useState("Feed");
-
-  // let Compo;
-  // if(selected == "Feed") {
-  //   Compo = Feed;
-  //   console.log(Compo);
-  // }
-  // else if(selected == "Profile") {
-  //   Compo = Profile; 
-  //   console.log(Compo);
-  // }
   
   const clearUser = async () => {
     let loggedOut = await logout();
