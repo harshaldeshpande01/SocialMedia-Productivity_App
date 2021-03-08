@@ -1,13 +1,17 @@
 import React, {useContext, useState} from "react";
 import "./style.css";
-import {Feed, Profile} from "../../containers/index";
+import {Feed, Profile, Courses, Deadlines} from "../../containers/index";
 import { UserContext } from "../../contexts/user";
 import { Redirect } from "react-router-dom";
-import {Navbar, Nav, NavDropdown, Button} from "react-bootstrap";
+import {Navbar, Nav, Button} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from "../../services/auth";
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 export default function Home() {
+
   const [user, setUser] = useContext(UserContext).user;
   // const [selected, setSelected] = useState("Feed");
 
@@ -39,14 +43,34 @@ export default function Home() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"></Nav>
-              <Button variant="primary" >Profile</Button>
+              {/* <Button variant="primary" >Profile</Button>
               <Button variant="primary" >Deadlines</Button>
-              <Button variant="primary" >Courses</Button>
+              <Button variant="primary" >Courses</Button> */}
               <Button variant="primary" onClick={clearUser}>Logout</Button>
           </Navbar.Collapse>
           </Navbar>
-          {/* <Compo /> */}
-          <Feed />
+
+          <Tabs>
+          <TabList style={{border: 0, color: 'white'}}>
+            <Tab>Feed</Tab>
+            <Tab>Profile</Tab>
+            <Tab>Courses</Tab>
+            <Tab>Deadlines</Tab>
+          </TabList>
+
+          <TabPanel>
+            <Feed/>
+          </TabPanel>
+          <TabPanel>
+            <Profile/>
+          </TabPanel>
+          <TabPanel>
+            <Courses/>
+          </TabPanel>
+          <TabPanel>
+            <Deadlines/>
+          </TabPanel>
+        </Tabs>
     </div>
   );
 }
