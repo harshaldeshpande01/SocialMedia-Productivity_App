@@ -28,15 +28,15 @@ export default function Home() {
   return (
     <div className="home">
           <Navbar bg="primary" variant="dark" expand="lg">
-          <Navbar.Brand href="/home">SocioProd</Navbar.Brand>
+          <Navbar.Brand>SocioProd</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav"> 
             <Nav className="mr-auto"></Nav>
               {/* <Button variant="primary" >Profile</Button>
               <Button variant="primary" >Deadlines</Button>
               <Button variant="primary" >Courses</Button> */}
               <Button variant="primary" onClick={clearUser}>Logout</Button>
-          </Navbar.Collapse>
+            </Navbar.Collapse> 
           </Navbar>
 
           <Tabs>

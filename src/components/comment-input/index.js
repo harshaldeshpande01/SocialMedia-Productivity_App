@@ -3,7 +3,7 @@ import "./style.css";
 import { UserContext } from "../../contexts/user";
 import { db } from "../../firebase";
 
-export default function CommentInput({ comments, id }) {
+export default function CommentInput({ comments, id, parent }) {
   const [user, setUser] = useContext(UserContext).user;
   const [comment, setComment] = useState("");
   const [commentArray, setCommentArray] = useState(comments ? comments : []);
@@ -17,7 +17,8 @@ export default function CommentInput({ comments, id }) {
         username: user.email.replace("@gmail.com", "").toLowerCase(),
       });
 
-      db.collection("posts")
+      const str = parent;
+      db.collection(str)
         .doc(id)
         .update({
           comments: commentArray,
