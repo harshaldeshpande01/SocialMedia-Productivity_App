@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import "./style.css";
 import {Feed, Profile, Courses, Deadlines} from "../../containers/index";
 import { UserContext } from "../../contexts/user";

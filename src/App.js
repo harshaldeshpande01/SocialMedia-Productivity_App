@@ -1,5 +1,5 @@
 import "./App.css";
-import { Home, Login, SignUp, Deadlines, Courses } from "./pages";
+import { Home, Login, SignUp} from "./pages";
 import { UserContextProvider } from "./contexts/user";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
