@@ -98,7 +98,7 @@ export default function Post({
         <></>
       )}
 
-      {user ? <CommentInput comments={comments} id={id} /> : <></>}
+      {user ? <CommentInput comments={comments} id={id} parent="posts"/> : <></>}
     </div>
   );
 }

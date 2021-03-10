@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import "./style.css";
 import { signInWithGoogle } from "../../services/auth";
 import { UserContext } from "../../contexts/user";
+import {Button} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function SignInBtn() {
   const [, setUser] = useContext(UserContext).user;
@@ -9,11 +11,11 @@ export default function SignInBtn() {
   const signInBtnClick = async () => {
     let userBySignIn = await signInWithGoogle();
     if (userBySignIn) setUser(userBySignIn);
+    // console.log(userBySignIn);
+    // localStorage.setItem('user', userBySignIn);
   };
 
   return (
-    <button className="button button1" onClick={signInBtnClick}>
-      Sign In
-    </button>
+    <Button block size="lg" variant="success" onClick={signInBtnClick}>Sign in with Google</Button>
   );
 }

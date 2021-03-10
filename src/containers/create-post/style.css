@@ -19,6 +19,7 @@
 
 .createPost__uploadBtn {
   border: none;
+  align-items: right;
   background-color: white;
   cursor: pointer;
 }
@@ -33,7 +34,7 @@
   width: 100%;
   outline: none;
   font-size: 14px;
-  margin-top: 6px;
+  margin-top: 2px;
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
