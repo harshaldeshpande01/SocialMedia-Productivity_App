@@ -8,10 +8,11 @@ export default function Courses() {
 
   useEffect(() => {
     db.collection("courses").onSnapshot((snapshot) => {
+      // snapshot.docs.orderBy("semester");
       setCourses(snapshot.docs.map((doc) => ({ id: doc.id, course: doc.data() })));
     });
-    setCourses(courses.sort((a, b) => {return a.semester - b.semester}))
-    console.log(courses)
+    // setCourses(courses.sort((a, b) => {return a.semester - b.semester}))
+    // console.log(courses)
   }, []);
   return (
     <>
