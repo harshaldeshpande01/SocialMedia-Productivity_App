@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
 import { Comment } from "../../components";
-import { storage, db } from "../../firebase";
 import CommentInput from "../../components/comment-input";
 import { UserContext } from "../../contexts/user";
+import StarRatings from 'react-star-ratings';
 
 export default function Course({
   course_name,
@@ -13,6 +13,7 @@ export default function Course({
   professor,
   comments,
   username,
+  rating,
 }) {
   const [user, setUser] = useContext(UserContext).user;
   console.log(username);
@@ -23,8 +24,18 @@ export default function Course({
           <b><u><p>{course_name}</p></u></b>
         </div>
       </div>
+      <div style={{float: 'right'}}> 
+        <StarRatings
+          rating={rating}
+          starRatedColor="blue"
+          numberOfStars={5}
+          name='rating'
+          starDimension="20px"
+          starSpacing="5px"
+        />
+      </div>
       <div>
-          <p>Professor : {professor}</p>
+          <p><img src="https://img.icons8.com/ios-filled/30/000000/user-male-circle.png"/> : {professor}</p>
       </div>
       <div>
           <p>Semester : {semester}</p>

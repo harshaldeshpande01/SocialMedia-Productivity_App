@@ -10,8 +10,9 @@ export default function Courses() {
     db.collection("courses").onSnapshot((snapshot) => {
       setCourses(snapshot.docs.map((doc) => ({ id: doc.id, course: doc.data() })));
     });
+    setCourses(courses.sort((a, b) => {return a.semester - b.semester}))
+    console.log(courses)
   }, []);
-
   return (
     <>
     <div className="courses">
@@ -26,6 +27,7 @@ export default function Courses() {
             professor={course.professor}
             comments={course.comments}
             username={course.username}
+            rating={course.rating}
           />
         );
       })}
