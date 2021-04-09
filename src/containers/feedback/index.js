@@ -17,9 +17,8 @@ export default function Feedback() {
   }
 
   return (
-    <form id="container" onSubmit={sendEmail}>
+    <form className="form-container" onSubmit={sendEmail}>
       <label style={{textAlign: 'center', fontSize: '25px'}}>Get in Touch!</label>
-      {/* <h1>Get in touch!</h1> */}
       <label className="label" >Name</label>
       <input type="text" name="user_name" />
       <label>Email</label>

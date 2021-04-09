@@ -1,22 +1,15 @@
-/* form {
-  margin-top: 10px;
+.form-container {
+  margin-top: 100px;
+  margin-left: 33%;
   background: white;
   border: 1px solid #dedede;
   display: flex;
   /* align-items: center; */
   /* justify-content: center; */
-  /* flex-direction: column;
+  flex-direction: column;
   justify-content: space-around;
   max-width: 500px;
   padding: 30px 50px;
-} */ */
-
-#container {
-  display: flex;           /* establish flex container */
-  flex-direction: column;  /* make main axis vertical */
-  justify-content: center; /* center items vertically, in this case */
-  align-items: center;     /* center items horizontally, in this case */
-  height: 300px;
 }
 
 input {
