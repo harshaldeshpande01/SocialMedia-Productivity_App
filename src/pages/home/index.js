@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import "./style.css";
-import {Feed, Profile, Courses, Deadlines} from "../../containers/index";
+import {Feed, Feedback, Courses, Deadlines} from "../../containers/index";
 import { UserContext } from "../../contexts/user";
 import { Redirect } from "react-router-dom";
 import {Navbar, Nav, Button} from "react-bootstrap";
@@ -42,22 +42,22 @@ export default function Home() {
           <Tabs>
           <TabList style={{border: 0, color: 'white'}}>
             <Tab>Feed</Tab>
-            <Tab>Profile</Tab>
             <Tab>Courses</Tab>
             <Tab>Deadlines</Tab>
+            <Tab>Feedback</Tab>
           </TabList>
 
           <TabPanel>
             <Feed/>
           </TabPanel>
           <TabPanel>
-            <Profile/>
-          </TabPanel>
-          <TabPanel>
             <Courses/>
           </TabPanel>
           <TabPanel>
             <Deadlines/>
+          </TabPanel>
+          <TabPanel>
+            <Feedback/>
           </TabPanel>
         </Tabs>
     </div>
