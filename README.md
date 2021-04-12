@@ -1,18 +1,16 @@
 # SocioProd 
 
-## Hosted on firebase https://socioprod-app.web.app/
+Hosted on firebase https://socioprod-app.web.app/
 
-![WhatsApp Image 2021-04-12 at 4 31 59 PM](https://user-images.githubusercontent.com/60571252/114384996-0cb88980-9bad-11eb-96a4-363ae602526b.jpeg)
+![WhatsApp Image 2021-04-12 at 4 31 59 PM](https://user-images.githubusercontent.com/60571252/114385399-9c5e3800-9bad-11eb-98b7-77465545f0ed.jpeg)
 
+# Run Scripts
+To download neseccary dependencies, in the project directory run:
+`npm install`
 
-## Run Scripts
-In the project directory, run:
-### `npm install`
-to download neseccary dependencies
-
-Then, 
-### `yarn start`
-### `npm start`
+Then do one of the folowing, 
+`yarn start`
+`npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
