@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import "./style.css";
-import { SignInBtn } from "../../components";
 import { UserContext } from "../../contexts/user";
 
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
@@ -77,7 +76,7 @@ export default function CreatePost() {
 
   return (
     <div className="createPost">
-      {user ? (
+      {/* {user ? ( */}
         <div className="createPost__loggedIn">
           <p>Create Post</p>
           <div className="createPost__loggedInCenter">
@@ -116,12 +115,12 @@ export default function CreatePost() {
             </button>
           </div>
         </div>
-      ) : (
+      {/* ) : (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
           <SignInBtn />
           <div style={{ marginLeft: "12px"}}>to Post & Comment</div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

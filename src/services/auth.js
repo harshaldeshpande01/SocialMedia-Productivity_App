@@ -1,9 +1,24 @@
-import { auth, provider } from "../firebase";
+import { auth, googleProvider, facebookProvider } from "../firebase";
 
 export const signInWithGoogle = async () => {
   let user;
   await auth
-    .signInWithPopup(provider)
+    .signInWithPopup(googleProvider)
+    .then((res) => {
+      console.log(res.user);
+      user = res.user;
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+
+  return user;
+};
+
+export const signInWithFacebook = async () => {
+  let user;
+  await auth
+    .signInWithPopup(facebookProvider)
     .then((res) => {
       console.log(res.user);
       user = res.user;
