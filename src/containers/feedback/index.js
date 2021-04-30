@@ -1,6 +1,8 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
 import './style.css'
+import { Link } from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 export default function Feedback() {
 
@@ -17,6 +19,18 @@ export default function Feedback() {
   }
 
   return (
+    <>
+      <center>
+      <div style={{display: 'flex', padding: '1em', width: '100%', backgroundColor: '#f3f2ef', alignItems: 'flex-end', justifyContent: 'center'}}>
+        <h2 style={{color: 'black', fontSize: '2rem', fontWeight: '700'}}>SocioProd</h2>
+      </div>
+      <div style={{display: 'flex', width: '100%', height: '50px', backgroundColor: '#f3f2ef', alignItems: 'flex-start', justifyContent: 'center'}}>
+          <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/home' style={{textDecoration: 'none'}}>Home</Link></Button>
+          <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/courses' style={{textDecoration: 'none'}}>Courses</Link></Button>
+          <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/deadlines' style={{textDecoration: 'none'}}>Deadlines</Link></Button>
+      </div>
+    </center>
+
     <form className="form-container" onSubmit={sendEmail}>
       <label style={{textAlign: 'center', fontSize: '25px'}}>Get in Touch!</label>
       <label className="label" >Name</label>
@@ -27,6 +41,7 @@ export default function Feedback() {
       <textarea name="message" />
       <input type="submit" className="submitButton" value="Send" />
     </form>
+    </>
   );
 }
 

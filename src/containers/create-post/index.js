@@ -6,6 +6,8 @@ import { storage, db } from "../../firebase";
 import makeid from "../../helper/functions";
 
 import firebase from "firebase";
+// import { Card } from "rebass";
+import { Card, CardDeck } from "react-bootstrap";
 
 export default function CreatePost( {currentUser} ) {
 
@@ -72,6 +74,8 @@ export default function CreatePost( {currentUser} ) {
   };
 
   return (
+    <>
+
     <div className="createPost">
         <div className="createPost__loggedIn">
           <p>Create Post</p>
@@ -112,5 +116,7 @@ export default function CreatePost( {currentUser} ) {
           </div>
         </div>
     </div>
+    
+    </> 
   );
 }

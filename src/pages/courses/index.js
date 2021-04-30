@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Course } from "../../containers/index";
 import {Redirect, useHistory, Link} from 'react-router-dom';
-import {Navbar, Nav, Button} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import { auth, db } from "../../firebase";
 import { logout } from "../../services/auth";
 
@@ -44,16 +44,19 @@ export default function Courses() {
 
   return (
     <>
-    <Navbar bg="light" expand="lg">
-          <Navbar.Brand>SocioProd</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav"> 
-            <Nav className="mr-auto"></Nav>
-              <Button variant="light"><Link to='/home'>Home</Link></Button>
-              <Button variant="light"><Link to='/courses'>Courses</Link></Button>
-              <Button variant="light" style={{color: '#c30f42'}} onClick={clearUser}>Logout</Button>
-            </Navbar.Collapse> 
-    </Navbar>
+    
+    <center>
+      <div style={{display: 'flex', padding: '1em', width: '100%', backgroundColor: '#f3f2ef', alignItems: 'flex-end', justifyContent: 'center'}}>
+        <h2 style={{color: 'black', fontSize: '2rem', fontWeight: '700'}}>SocioProd</h2>
+      </div>
+      <div style={{display: 'flex', width: '100%', height: '50px', backgroundColor: '#f3f2ef', alignItems: 'flex-start', justifyContent: 'center'}}>
+          <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/home' style={{textDecoration: 'none'}}>Home</Link></Button>
+          <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/deadlines' style={{textDecoration: 'none'}}>Deadlines</Link></Button>
+          <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/contact' style={{textDecoration: 'none'}}>Contact</Link></Button>
+          <Button variant='light' onClick={clearUser} style={{color: '#c30f42', backgroundColor: '#f3f2ef', border: 'none'}}>Logout</Button>
+      </div>
+    </center>
+
     <div className="courses">
       {courses.map(({ id, course }) => {
         return (

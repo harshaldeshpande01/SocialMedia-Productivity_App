@@ -83,12 +83,6 @@ export default function Post({
             name="checkedH" />} 
           label=""
         />
-        <FormControlLabel 
-          control={<Checkbox icon={<EmojiEmotionsIcon />}  
-                    checkedIcon={<InsertEmoticonIcon />} 
-            name="checkedH" />} 
-          label=""
-        />
         <p> 
           <span style={{ fontWeight: "500", marginRight: "4px" }}>
           <u>{username}</u>

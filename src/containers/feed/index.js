@@ -11,6 +11,13 @@ export default function Feed( {currentUser} ) {
     db.collection("posts").onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })));
     });
+
+    // setPosts(posts.sort((a,b) => (a.post.timestamp.seconds > b.post.timestamp.seconds) ? 1 : 0));
+
+    // posts.map((post) => {
+    //   return console.log(post.post.timestamp)
+    // });
+    
   }, []);
 
   return (
