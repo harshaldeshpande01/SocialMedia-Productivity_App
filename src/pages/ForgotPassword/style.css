@@ -30,6 +30,7 @@ a:focus {
 }
 
 .text-title {
+  margin-top: 2em;
   text-align: center;
   font-size: 2rem;
   font-weight: 700;

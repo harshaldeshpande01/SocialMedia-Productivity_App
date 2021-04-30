@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import "./style.css";
 import { Comment } from "../../components";
 import { storage, db } from "../../firebase";
@@ -60,7 +60,7 @@ export default function Post({
     <div className="post">
       <div className="post__header">
         <div className="post__headerLeft">
-          <img className="post__profilePic" src={profileUrl} />
+          <img className="post__profilePic" src={profileUrl} alt="Profile"/>
           <u><p style={{ marginLeft: "8px", marginTop: "8px"}}>{username}</p></u>
         </div>
         {sameUser ?
@@ -73,7 +73,7 @@ export default function Post({
       </div>
 
       <div className="post__center">
-        <img className="post__photoUrl" src={photoURl} />
+        <img className="post__photoUrl" src={photoURl} alt="post"/>
       </div>
 
       <div>
@@ -104,7 +104,7 @@ export default function Post({
 
       {comments ? (
         comments.map((comment) => (
-          <Comment key={comment.comment} username={comment.username} caption={comment.comment} first={comment.username == username} />
+          <Comment key={comment.comment} username={comment.username} caption={comment.comment} first={comment.username === username} />
         ))
       ) : (
         <></>

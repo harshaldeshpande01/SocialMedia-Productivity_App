@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
 
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
