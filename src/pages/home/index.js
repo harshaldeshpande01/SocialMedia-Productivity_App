@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import "./style.css";
 import {Feed, Feedback, Courses, Deadlines} from "../../containers/index";
-// import { UserContext } from "../../contexts/user";
 import { Redirect, useHistory } from "react-router-dom";
 import {Navbar, Nav, Button} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +12,6 @@ import 'react-tabs/style/react-tabs.css';
 
 export default function Home() {
 
-  // const [user, setUser] = useContext(UserContext).user;
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -22,7 +20,6 @@ export default function Home() {
     const unsubscribe = auth.onAuthStateChanged(user =>{
       if(user) {
         setCurrentUser(user);
-        // setUser(user);
         setLoading(false);
       }
       else {

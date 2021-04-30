@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import "./style.css";
-// import { UserContext } from "../../contexts/user";
 
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import { storage, db } from "../../firebase";
@@ -9,11 +8,9 @@ import makeid from "../../helper/functions";
 import firebase from "firebase";
 
 export default function CreatePost( {currentUser} ) {
-  // const [user, setUser] = useContext(UserContext).user;
+
   const [caption, setCaption] = useState("");
-
   const [image, setImage] = useState(null);
-
   const [progress, setProgress] = useState(0);
 
   const handleChange = (e) => {
@@ -76,7 +73,6 @@ export default function CreatePost( {currentUser} ) {
 
   return (
     <div className="createPost">
-      {/* {user ? ( */}
         <div className="createPost__loggedIn">
           <p>Create Post</p>
           <div className="createPost__loggedInCenter">
@@ -115,12 +111,6 @@ export default function CreatePost( {currentUser} ) {
             </button>
           </div>
         </div>
-      {/* ) : (
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-          <SignInBtn />
-          <div style={{ marginLeft: "12px"}}>to Post & Comment</div>
-        </div>
-      )} */}
     </div>
   );
 }

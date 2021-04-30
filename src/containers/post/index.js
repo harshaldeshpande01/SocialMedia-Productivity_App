@@ -3,7 +3,6 @@ import "./style.css";
 import { Comment } from "../../components";
 import { storage, db } from "../../firebase";
 import CommentInput from "../../components/comment-input";
-// import { UserContext } from "../../contexts/user";
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'; 
 import Checkbox from '@material-ui/core/Checkbox'; 
@@ -11,7 +10,6 @@ import Favorite from '@material-ui/icons/Favorite';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder'; 
-// import { LensTwoTone } from "@material-ui/icons";
 
 export default function Post({
   currentUser,
@@ -22,7 +20,6 @@ export default function Post({
   caption,
   comments,
 }) {
-  // const [user, setUser] = useContext(UserContext).user;
 
   let sameUser;
   if(currentUser)
@@ -31,9 +28,6 @@ export default function Post({
     sameUser = false;
 
   const deletePost = () => {
-    // console.log(user.email);
-    // console.log(username);
-    // console.log(id);
     if(sameUser) {
     // delete the image from firebase storage
 
@@ -70,12 +64,9 @@ export default function Post({
           <u><p style={{ marginLeft: "8px", marginTop: "8px"}}>{username}</p></u>
         </div>
         {sameUser ?
-          // {sameUser ?
           <button onClick={deletePost} className="post__delete">
             Delete
           </button>
-          // : <></>
-          // }
           :
           <></>
         }

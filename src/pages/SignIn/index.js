@@ -1,6 +1,5 @@
 import React, {useState, useContext} from "react";
 import "./style.css";
-// import { UserContext } from "../../contexts/user";
 import {auth} from '../../firebase';
 import { signInWithFacebook, signInWithGoogle } from "../../services/auth";
 import {Link, useHistory} from 'react-router-dom';
@@ -10,7 +9,6 @@ import {Alert} from 'react-bootstrap';
 
 export default function SignIn() {
 
-	// const [user, setUser] = useContext(UserContext).user;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
@@ -33,12 +31,9 @@ export default function SignIn() {
 		if(password.length < 1) 
 			return setError('Please provide a password');
 
-        // let newUser;
         await auth.signInWithEmailAndPassword(email, password)
         .then((res) => {
 			setError("");
-            // newUser = res.user;
-            // setUser(newUser);
 			setLoading(false);
 			history.push('/home');
         })
@@ -51,7 +46,6 @@ export default function SignIn() {
 	const goolgeSignIn = async () => {
 		let userBySignIn = await signInWithGoogle();
 		if (userBySignIn) {
-		// 	setUser(userBySignIn);
 			history.push('/home');
 		}
 	};
@@ -59,7 +53,6 @@ export default function SignIn() {
 	const fbSignIn = async () => {
 		let userBySignIn = await signInWithFacebook();
 		if (userBySignIn) {
-			// setUser(userBySignIn);
 			history.push('/home');
 		}
 	};
