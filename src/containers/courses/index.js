@@ -3,7 +3,7 @@ import "./style.css";
 import { Course } from "..";
 import { db } from "../../firebase";
 
-export default function Courses() {
+export default function Courses( {currentUser} ) {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export default function Courses() {
       {courses.map(({ id, course }) => {
         return (
           <Course
+            currentUser = {currentUser}
             key={id}
             id={id}
             course_name={course.course_name}

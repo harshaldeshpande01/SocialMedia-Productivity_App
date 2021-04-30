@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState} from "react";
 import "./style.css";
 import {auth} from '../../firebase';
 import {Link} from 'react-router-dom';
@@ -10,9 +10,13 @@ export default function SignIn() {
   	const [password, setPassword] = useState("");
   	const [confirm, setConfirm] = useState("");
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
   	const [message, setMessage] = useState("");
 
-    const handleRegister = async () => {
+    const handleRegister = async (event) => {
+		event.preventDefault();
+
+		setLoading(true);
 
 		if(email.length < 1) 
 			return setError('Please provide an email');
@@ -27,15 +31,17 @@ export default function SignIn() {
     	if(confirm.length < 1) 
 			return setError('Please confirm your password');
 
-    	if(password != confirm)
-      	return setError('Password\'s do not match')
+    	if(password !== confirm)
+      		return setError('Password\'s do not match')
 
     	auth.createUserWithEmailAndPassword(email, password)
     	.then((res) => {
 			setError("");
+			setLoading(false);
       		setMessage("Succesful! Login to continue");
         })
       	.catch((err) => {
+			setLoading(false);
 			return setError('Email already in use');
       	});
     };
@@ -61,6 +67,7 @@ export default function SignIn() {
 					</Alert>
 				}
 
+			<form onSubmit={handleRegister}>
 			    <div className="field-group">
 				  	<input
 						onClick = {() => setError("")}
@@ -78,13 +85,14 @@ export default function SignIn() {
 						onClick = {() => setError("")}
 						value={confirm}
 						onChange={(e) => setConfirm(e.target.value)}
-						className="input" type="password" id="txt-password" name="password" placeholder="Confirm password"
+						className="input" type="password" id="cfm-password" name="password" placeholder="Confirm password"
 					/>
 			    </div>
 
 			<div className="field-group">
-				<input className="btn-submit" type="submit" value="SingUp" onClick={handleRegister}/>
+				<input className="btn-submit" type="submit" value="SignUp" disabled={loading}/>
 			</div>
+		</form>
 
 		</div>
 	</div>

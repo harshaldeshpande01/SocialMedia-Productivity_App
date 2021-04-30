@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./style.css";
 import { Comment } from "../../components";
 import CommentInput from "../../components/comment-input";
-import { UserContext } from "../../contexts/user";
+// import { UserContext } from "../../contexts/user";
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'; 
 import Checkbox from '@material-ui/core/Checkbox'; 
@@ -18,6 +18,7 @@ import Box from '@material-ui/core/Box';
 
 
 export default function Course({
+  currentUser,
   course_name,
   id,
   course_type,
@@ -27,7 +28,7 @@ export default function Course({
   username,
   rating,
 }) {
-  const [user, setUser] = useContext(UserContext).user;
+  // const [user, setUser] = useContext(UserContext).user;
   
   const labels = {
     0.5: 'Useless',
@@ -111,7 +112,7 @@ export default function Course({
         <></>
       )}
 
-      {user ? <CommentInput comments={comments} id={id} parent="courses"  /> : <></>}
+      {currentUser ? <CommentInput currentUser={currentUser} comments={comments} id={id} parent="courses"  /> : <></>}
     </div>
   );
 }

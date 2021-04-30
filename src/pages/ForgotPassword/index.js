@@ -1,19 +1,23 @@
 import React, {useState, useContext, useEffect} from "react";
 import "./style.css";
-import { UserContext } from "../../contexts/user";
+// import { UserContext } from "../../contexts/user";
 import {auth} from '../../firebase';
 import {Link} from 'react-router-dom';
 import {Alert} from 'react-bootstrap';
 
 export default function SignIn() {
 
-	const [user, setUser] = useContext(UserContext).user;
+	// const [user, setUser] = useContext(UserContext).user;
   	const [email, setEmail] = useState("");
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
-  	const handleReset = async () => {
+  	const handleReset = async (event) => {
 
+		setLoading(true);
+
+		event.preventDefault();
 		if(email.length < 1) 
 		  return setError('Please provide an email');
 		if (typeof email !== "undefined") {
@@ -26,9 +30,11 @@ export default function SignIn() {
 		await auth.sendPasswordResetEmail(email)
         .then((res) => {
 			setError("");
+			setLoading(false);
 			setMessage("Mail sent! Please check your inbox");
         })
         .catch((err) => {
+			setLoading(false);
 			return setError('No account linked to this email');
         });
     };
@@ -59,6 +65,7 @@ export default function SignIn() {
 					</Alert>
 				}
 
+			<form onSubmit={handleReset}>
 			    <div className="field-group">
 				    <input
 						onClick = {() => setError("")}
@@ -68,9 +75,10 @@ export default function SignIn() {
 					/>
 			    </div>
 
-			<div className="field-group">
-				<input className="btn-submit" type="submit" value="Reset" onClick={handleReset}/>
-			</div>
+				<div className="field-group">
+					<input className="btn-submit" type="submit" value="Reset" disabled={loading}/>
+				</div>
+			</form>
 
 			<div className="separator-wrapper">
 				<div className="separator">

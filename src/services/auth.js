@@ -36,6 +36,7 @@ export const logout = async () => {
     .signOut()
     .then(() => {
       logout_sucess = true;
+      console.log("logged-out")
     })
     .catch((error) => {
       console.log(error.message);

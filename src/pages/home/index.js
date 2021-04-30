@@ -1,10 +1,11 @@
-import React, {useContext} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import "./style.css";
 import {Feed, Feedback, Courses, Deadlines} from "../../containers/index";
-import { UserContext } from "../../contexts/user";
-import { Redirect } from "react-router-dom";
+// import { UserContext } from "../../contexts/user";
+import { Redirect, useHistory } from "react-router-dom";
 import {Navbar, Nav, Button} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { auth } from "../../firebase";
 import { logout } from "../../services/auth";
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -12,17 +13,30 @@ import 'react-tabs/style/react-tabs.css';
 
 export default function Home() {
 
-  const [user, setUser] = useContext(UserContext).user;
+  // const [user, setUser] = useContext(UserContext).user;
+  const [currentUser, setCurrentUser] = useState();
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user =>{
+      if(user) {
+        setCurrentUser(user);
+        // setUser(user);
+        setLoading(false);
+      }
+      else {
+        history.push('/');
+      } 
+    })
+    return unsubscribe;
+  });
   
   const clearUser = async () => {
     let loggedOut = await logout();
     if(loggedOut)
-      setUser(null);
-  }
-
-  var redirect = user ? false : true;
-  if (redirect) {
-      return <Redirect to="/" />
+      setCurrentUser(null);
+    return <Redirect to="/" />
   }
 
   return (
@@ -39,6 +53,7 @@ export default function Home() {
             </Navbar.Collapse> 
           </Navbar>
 
+        { !loading && 
           <Tabs>
           <TabList style={{border: 0, color: 'white'}}>
             <Tab>Feed</Tab>
@@ -48,10 +63,10 @@ export default function Home() {
           </TabList>
 
           <TabPanel>
-            <Feed/>
+            <Feed currentUser={currentUser}/>
           </TabPanel>
           <TabPanel>
-            <Courses/>
+            <Courses currentUser={currentUser}/>
           </TabPanel>
           <TabPanel>
             <Deadlines/>
@@ -60,6 +75,7 @@ export default function Home() {
             <Feedback/>
           </TabPanel>
         </Tabs>
+        }
     </div>
   );
 }

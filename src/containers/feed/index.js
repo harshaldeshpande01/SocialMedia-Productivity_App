@@ -4,7 +4,7 @@ import { CreatePost} from "../index";
 import { Post } from "..";
 import { db } from "../../firebase";
 
-export default function Feed() {
+export default function Feed( {currentUser} ) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -15,11 +15,12 @@ export default function Feed() {
 
   return (
     <>
-    <CreatePost />
+    <CreatePost currentUser = {currentUser}/>
     <div className="feed">
       {posts.map(({ id, post }) => {
         return (
           <Post
+            currentUser={currentUser}
             key={id}
             id={id}
             profileUrl={post.profileUrl}

@@ -3,7 +3,7 @@ import "./style.css";
 import { Comment } from "../../components";
 import { storage, db } from "../../firebase";
 import CommentInput from "../../components/comment-input";
-import { UserContext } from "../../contexts/user";
+// import { UserContext } from "../../contexts/user";
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'; 
 import Checkbox from '@material-ui/core/Checkbox'; 
@@ -11,8 +11,10 @@ import Favorite from '@material-ui/icons/Favorite';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder'; 
+// import { LensTwoTone } from "@material-ui/icons";
 
 export default function Post({
+  currentUser,
   profileUrl,
   username,
   id,
@@ -20,18 +22,18 @@ export default function Post({
   caption,
   comments,
 }) {
-  const [user, setUser] = useContext(UserContext).user;
+  // const [user, setUser] = useContext(UserContext).user;
 
-  var sameUser;
-  if(user)
-    sameUser = user.email.includes(username);
+  let sameUser;
+  if(currentUser)
+    sameUser = currentUser.email.includes(username);
   else
     sameUser = false;
 
   const deletePost = () => {
-    console.log(user.email);
-    console.log(username);
-    console.log(id);
+    // console.log(user.email);
+    // console.log(username);
+    // console.log(id);
     if(sameUser) {
     // delete the image from firebase storage
 
@@ -111,13 +113,13 @@ export default function Post({
 
       {comments ? (
         comments.map((comment) => (
-          <Comment username={comment.username} caption={comment.comment} first={comment.username == username} />
+          <Comment key={comment.comment} username={comment.username} caption={comment.comment} first={comment.username == username} />
         ))
       ) : (
         <></>
       )}
 
-      {user ? <CommentInput comments={comments} id={id} parent="posts"/> : <></>}
+      {currentUser ? <CommentInput currentUser={currentUser} comments={comments} id={id} parent="posts"/> : <></>}
     </div>
   );
 }

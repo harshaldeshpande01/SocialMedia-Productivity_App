@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./style.css";
-import { UserContext } from "../../contexts/user";
+// import { UserContext } from "../../contexts/user";
 
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import { storage, db } from "../../firebase";
@@ -8,8 +8,8 @@ import makeid from "../../helper/functions";
 
 import firebase from "firebase";
 
-export default function CreatePost() {
-  const [user, setUser] = useContext(UserContext).user;
+export default function CreatePost( {currentUser} ) {
+  // const [user, setUser] = useContext(UserContext).user;
   const [caption, setCaption] = useState("");
 
   const [image, setImage] = useState(null);
@@ -59,8 +59,8 @@ export default function CreatePost() {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 caption: caption,
                 photoUrl: imageUrl,
-                username: user.email.replace("@gmail.com", ""),
-                profileUrl: user.photoURL,
+                username: currentUser.email.replace("@gmail.com", ""),
+                profileUrl: currentUser.photoURL,
               });
             });
 

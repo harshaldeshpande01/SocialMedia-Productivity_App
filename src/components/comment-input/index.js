@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
-import { UserContext } from "../../contexts/user";
+// import { UserContext } from "../../contexts/user";
 import { db } from "../../firebase";
 
-export default function CommentInput({ comments, id, parent }) {
-  const [user, setUser] = useContext(UserContext).user;
+export default function CommentInput({ currentUser, comments, id, parent }) {
+  // const [user, setUser] = useContext(UserContext).user;
   const [comment, setComment] = useState("");
   const [commentArray, setCommentArray] = useState(comments ? comments : []);
 
@@ -14,7 +14,7 @@ export default function CommentInput({ comments, id, parent }) {
 
       commentArray.push({
         comment: comment,
-        username: user.email.replace("@gmail.com", "").toLowerCase(),
+        username: currentUser.email.replace("@gmail.com", "").toLowerCase(),
       });
 
       const str = parent;
@@ -25,7 +25,7 @@ export default function CommentInput({ comments, id, parent }) {
         })
         .then(function () {
           setComment("");
-          console.log("comment added");
+          // console.log("comment added");
         })
         .catch(function (error) {
           console.log(`Error ${error}`);
