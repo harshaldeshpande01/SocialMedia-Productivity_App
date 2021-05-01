@@ -1,11 +1,11 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import "./style.css";
 import {auth} from '../../firebase';
 import { signInWithFacebook, signInWithGoogle } from "../../services/auth";
 import {Link, useHistory} from 'react-router-dom';
 import google_img from './google-logo.png';
 import fb_img from './fb-logo.png';
-import {Alert} from 'react-bootstrap';
+import {Alert, Spinner} from 'react-bootstrap';
 
 export default function SignIn() {
 
@@ -16,8 +16,6 @@ export default function SignIn() {
 	const history = useHistory();
 
     const handleLogin = async (event) => {
-
-		setLoading(true);
 
 		event.preventDefault();
 		if(email.length < 1) 
@@ -30,6 +28,8 @@ export default function SignIn() {
 		}
 		if(password.length < 1) 
 			return setError('Please provide a password');
+
+		setLoading(true);
 
         await auth.signInWithEmailAndPassword(email, password)
         .then((res) => {
@@ -98,11 +98,15 @@ export default function SignIn() {
 				</div>
 
 			<div className="field-group">
-				<input 
-					className="btn-submit" type="submit" value="Login"
-					disabled={loading}
-					// onClick={handleLogin}
-				/>
+				{loading? 
+					<Spinner animation="border" variant="danger" role="status">
+  						<span className="sr-only">Loading...</span>
+					</Spinner>
+					:
+					<input 
+						className="btn-submit" type="submit" value="Login"
+					/>
+				}
 			</div>
 		</form>
 			<div className="separator-wrapper">
@@ -127,3 +131,4 @@ export default function SignIn() {
     </div>
     );
 }
+

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./style.css";
 import {auth} from '../../firebase';
 import {Link} from 'react-router-dom';
-import {Alert} from 'react-bootstrap';
+import {Alert, Spinner} from 'react-bootstrap';
 
 export default function SignIn() {
 
@@ -15,8 +15,6 @@ export default function SignIn() {
 
     const handleRegister = async (event) => {
 		event.preventDefault();
-
-		setLoading(true);
 
 		if(email.length < 1) 
 			return setError('Please provide an email');
@@ -33,6 +31,8 @@ export default function SignIn() {
 
     	if(password !== confirm)
       		return setError('Password\'s do not match')
+
+		setLoading(true);
 
     	auth.createUserWithEmailAndPassword(email, password)
     	.then((res) => {
@@ -88,9 +88,14 @@ export default function SignIn() {
 						className="input" type="password" id="cfm-password" name="password" placeholder="Confirm password"
 					/>
 			    </div>
-
 			<div className="field-group">
-				<input className="btn-submit" type="submit" value="SignUp" disabled={loading}/>
+				{loading?
+					<Spinner animation="border" variant="danger" role="status">
+						<span className="sr-only">Loading...</span>
+					</Spinner>
+					:
+					<input className="btn-submit" type="submit" value="SignUp" disabled={loading}/>
+				}
 			</div>
 		</form>
 

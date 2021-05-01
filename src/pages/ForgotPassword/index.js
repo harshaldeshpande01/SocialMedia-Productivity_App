@@ -1,21 +1,17 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState} from "react";
 import "./style.css";
-// import { UserContext } from "../../contexts/user";
 import {auth} from '../../firebase';
 import {Link} from 'react-router-dom';
-import {Alert} from 'react-bootstrap';
+import {Alert, Spinner} from 'react-bootstrap';
 
 export default function SignIn() {
 
-	// const [user, setUser] = useContext(UserContext).user;
   	const [email, setEmail] = useState("");
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
   	const handleReset = async (event) => {
-
-		setLoading(true);
 
 		event.preventDefault();
 		if(email.length < 1) 
@@ -26,6 +22,8 @@ export default function SignIn() {
 			  return setError("Email badly formatted");
 			}
 		}
+
+		setLoading(true);
         
 		await auth.sendPasswordResetEmail(email)
         .then((res) => {
@@ -76,7 +74,13 @@ export default function SignIn() {
 			    </div>
 
 				<div className="field-group">
-					<input className="btn-submit" type="submit" value="Reset" disabled={loading}/>
+					{loading?
+						<Spinner animation="border" variant="danger" role="status">
+							<span className="sr-only">Loading...</span>
+						</Spinner>
+						:
+						<input className="btn-submit" type="submit" value="Reset" disabled={loading}/>
+					}
 				</div>
 			</form>
 
