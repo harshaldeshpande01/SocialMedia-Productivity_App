@@ -41,7 +41,7 @@ export default function CommentInput({ currentUser, comments, id, parent }) {
       ></textarea>
 
       <button onClick={addComment} className="commentInput__btn">
-        Post
+        Send
       </button>
     </div>
   );

@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Course } from "../../containers/index";
 import {Redirect, useHistory, Link} from 'react-router-dom';
-import {Button, Spinner} from "react-bootstrap";
+import {Button, Spinner, Form, FormControl} from "react-bootstrap";
 import { auth, db } from "../../firebase";
 import { logout } from "../../services/auth";
 
 export default function Courses() {
 
   const [courses, setCourses] = useState([]);
+  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -35,11 +37,9 @@ export default function Courses() {
 
   useEffect(() => {
     db.collection("courses").onSnapshot((snapshot) => {
-      // snapshot.docs.orderBy("semester");
       setCourses(snapshot.docs.map((doc) => ({ id: doc.id, course: doc.data() })));
+      setLoading(false);
     });
-    // setCourses(courses.sort((a, b) => {return a.semester - b.semester}))
-    // console.log(courses)
   }, []);
 
   return (
@@ -57,6 +57,15 @@ export default function Courses() {
             <Button variant='light' onClick={clearUser} style={{color: '#c30f42', backgroundColor: '#f3f2ef', border: 'none'}}>Logout</Button> 
         </div>
       </center>
+    <center  style={{backgroundColor: '#f3f2ef', padding: '1em'}}>
+      <Form inline style={{maxWidth: '600px', backgroundColor: '#f3f2ef'}}>
+        <FormControl style={{width: '50%', marginLeft: '9%', marginRight: '1%'}} type="text" placeholder="Search courses (by name)" 
+          value={search}
+          onChange = {(e) => setSearch(e.target.value)}/>
+        <Button style={{width: '15%'}} variant="outline-danger" onClick = {() => setFilter(search)}>Search</Button>
+        <Button style={{width: '15%'}} variant="outline-danger" onClick = {() => {setFilter(''); setSearch('')}}>Reset</Button>
+      </Form>
+    </center>
 
     {loading?
       <Spinner className='loading-animation' animation="border" variant="danger" role="status">
@@ -67,7 +76,8 @@ export default function Courses() {
         {courses.map(({ id, course }) => {
           return (
             <>
-                <Course
+            { course.course_name.includes(filter) &&             
+              <Course
                 currentUser = {currentUser}
                 key={id}
                 id={id}
@@ -79,6 +89,7 @@ export default function Courses() {
                 username={course.username}
                 rating={course.rating}
               />
+            }
             </>
           );
         })}
