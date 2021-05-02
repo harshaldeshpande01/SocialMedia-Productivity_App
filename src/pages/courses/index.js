@@ -52,18 +52,18 @@ export default function Courses() {
         <div style={{display: 'flex', width: '100%', height: '50px', backgroundColor: '#f3f2ef', alignItems: 'flex-start', justifyContent: 'center'}}>
             <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/home' style={{textDecoration: 'none'}}>Home</Link></Button>
             <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><u><Link to='/courses' style={{textDecoration: 'none'}}>Courses</Link></u></Button>
-            <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/deadlines' style={{textDecoration: 'none'}}>Deadlines</Link></Button>
+            <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/deadlines' style={{textDecoration: 'none'}}>Deadlines*</Link></Button>
             <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/contact' style={{textDecoration: 'none'}}>Contact</Link></Button> 
             <Button variant='light' onClick={clearUser} style={{color: '#c30f42', backgroundColor: '#f3f2ef', border: 'none'}}>Logout</Button> 
         </div>
       </center>
     <center  style={{backgroundColor: '#f3f2ef', padding: '1em'}}>
-      <Form inline style={{maxWidth: '600px', backgroundColor: '#f3f2ef'}}>
-        <FormControl style={{width: '50%', marginLeft: '9%', marginRight: '1%'}} type="text" placeholder="Search courses (by name)" 
+      <Form inline className="search-form">
+        <FormControl style={{width: '50%', marginLeft: '6%', marginRight: '1%'}} type="text" placeholder="Search courses (by name)" 
           value={search}
           onChange = {(e) => setSearch(e.target.value)}/>
-        <Button style={{width: '15%'}} variant="outline-danger" onClick = {() => setFilter(search)}>Search</Button>
-        <Button style={{width: '15%'}} variant="outline-danger" onClick = {() => {setFilter(''); setSearch('')}}>Reset</Button>
+        <Button style={{width: '18%', marginRight: '1%'}} variant="light" onClick = {() => setFilter(search)}>Search</Button>
+        <Button style={{width: '18%'}} variant="light" onClick = {() => {setFilter(''); setSearch('')}}>Reset</Button>
       </Form>
     </center>
 
@@ -76,7 +76,7 @@ export default function Courses() {
         {courses.map(({ id, course }) => {
           return (
             <>
-            { course.course_name.includes(filter) &&             
+            { course.course_name.toLowerCase().includes(filter.toLowerCase()) ?             
               <Course
                 currentUser = {currentUser}
                 key={id}
@@ -89,6 +89,8 @@ export default function Courses() {
                 username={course.username}
                 rating={course.rating}
               />
+              :
+              <></>
             }
             </>
           );

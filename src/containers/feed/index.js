@@ -8,15 +8,11 @@ export default function Feed( {currentUser} ) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })));
     });
-
-    // setPosts(posts.sort((a,b) => (a.post.timestamp.seconds > b.post.timestamp.seconds) ? 1 : 0));
-
-    // posts.map((post) => {
-    //   return console.log(post.post.timestamp)
-    // });
     
   }, []);
 
@@ -24,7 +20,8 @@ export default function Feed( {currentUser} ) {
     <>
     <CreatePost currentUser = {currentUser}/>
     <div className="feed">
-      {posts.map(({ id, post }) => {
+      {
+        posts.map(({ id, post }) => {
         return (
           <Post
             currentUser={currentUser}
