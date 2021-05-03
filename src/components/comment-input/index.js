@@ -1,6 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { db } from "../../firebase";
+import SendIcon from '@material-ui/icons/Send';
+import IconButton from '@material-ui/core/IconButton';
 
 export default function CommentInput({ currentUser, comments, id, parent }) {
   const [comment, setComment] = useState("");
@@ -40,9 +42,12 @@ export default function CommentInput({ currentUser, comments, id, parent }) {
         onChange={(e) => setComment(e.target.value)}
       ></textarea>
 
-      <button onClick={addComment} className="commentInput__btn">
-        Send
-      </button>
+      {/* <button onClick={addComment} className="commentInput__btn">
+        < SendIcon />
+      </button> */}
+      <IconButton aria-label="send" color="primary" onClick={addComment}>
+        < SendIcon />
+      </IconButton>
     </div>
   );
 }

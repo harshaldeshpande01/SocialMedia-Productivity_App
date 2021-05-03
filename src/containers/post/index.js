@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.css";
 import { Comment } from "../../components";
 import { storage, db } from "../../firebase";
@@ -7,9 +7,11 @@ import CommentInput from "../../components/comment-input";
 import FormControlLabel from '@material-ui/core/FormControlLabel'; 
 import Checkbox from '@material-ui/core/Checkbox'; 
 import Favorite from '@material-ui/icons/Favorite'; 
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder'; 
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteOutlinedIcon from '@material-ui/icons/Delete';
+
+import {ConfirmDialog} from '../../components/index';
 
 export default function Post({
   currentUser,
@@ -20,6 +22,8 @@ export default function Post({
   caption,
   comments,
 }) {
+
+  const [confirmOpen, setConfirmOpen] = useState();
 
   let sameUser;
   if(currentUser)
@@ -64,9 +68,22 @@ export default function Post({
           <u><p style={{ marginLeft: "8px", marginTop: "8px"}}>{username}</p></u>
         </div>
         {sameUser ?
-          <button onClick={deletePost} className="post__delete">
-            Delete
-          </button>
+          <div>
+            <IconButton aria-label="delete" color="disabled" onClick={() => setConfirmOpen(true)}>
+              <DeleteOutlinedIcon />
+            </IconButton>
+            <ConfirmDialog
+              title="Delete Post?"
+              open={confirmOpen}
+              setOpen={setConfirmOpen}
+              onConfirm={deletePost}
+            >
+              Are you sure you want to delete this post?
+            </ConfirmDialog>
+          </div>
+          // <button onClick={deletePost} className="post__delete">
+          //   Delete
+          // </button>
           :
           <></>
         }

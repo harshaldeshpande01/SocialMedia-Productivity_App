@@ -6,10 +6,12 @@ import {Button, Spinner} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { auth } from "../../firebase";
 import { logout } from "../../services/auth";
+import { ConfirmDialog } from "../../components/index";
 
 export default function Home() {
 
   const [currentUser, setCurrentUser] = useState();
+  const [confirmOpen, setConfirmOpen] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
@@ -44,7 +46,17 @@ export default function Home() {
           <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/courses' style={{textDecoration: 'none'}}>Courses</Link></Button>
           <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/deadlines' style={{textDecoration: 'none'}}>Deadlines</Link></Button>
           <Button variant='light' style={{backgroundColor: '#f3f2ef', border: 'none'}} ><Link to='/contact' style={{textDecoration: 'none'}}>Contact</Link></Button> 
-          <Button variant='light' onClick={clearUser} style={{color: '#c30f42', backgroundColor: '#f3f2ef', border: 'none'}}>Logout</Button> 
+          <Button variant='light' onClick={() => setConfirmOpen(true)} style={{color: '#c30f42', backgroundColor: '#f3f2ef', border: 'none'}}>Logout</Button> 
+          <div>
+            <ConfirmDialog
+              title="Logout?"
+              open={confirmOpen}
+              setOpen={setConfirmOpen}
+              onConfirm={clearUser}
+            >
+              Are you sure you want to logout?
+            </ConfirmDialog>
+          </div>
       </div>
     </center>
       <div className="home">
