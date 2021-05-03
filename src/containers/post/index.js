@@ -3,6 +3,7 @@ import "./style.css";
 import { Comment } from "../../components";
 import { storage, db } from "../../firebase";
 import CommentInput from "../../components/comment-input";
+import {Link} from 'react-router-dom';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel'; 
 import Checkbox from '@material-ui/core/Checkbox'; 
@@ -24,6 +25,11 @@ export default function Post({
 }) {
 
   const [confirmOpen, setConfirmOpen] = useState();
+
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
 
   let sameUser;
   if(currentUser)
@@ -90,7 +96,11 @@ export default function Post({
       </div>
 
       <div className="post__center">
-        <img className="post__photoUrl" src={photoURl} alt="post"/>
+        <img 
+          className="post__photoUrl" 
+          src={photoURl} alt="post"
+          onClick={() => openInNewTab(photoURl)}
+        />
       </div>
 
       <div>

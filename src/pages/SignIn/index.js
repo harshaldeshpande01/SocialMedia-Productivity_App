@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import "./style.css";
 import {auth} from '../../firebase';
-import { signInWithFacebook, signInWithGoogle } from "../../services/auth";
+import { signInWithGithub, signInWithGoogle } from "../../services/auth";
 import {Link, useHistory} from 'react-router-dom';
 import google_img from './google-logo.png';
 import fb_img from './fb-logo.png';
-import {Alert, Spinner} from 'react-bootstrap';
+import {Alert, Spinner, useAccordionToggle} from 'react-bootstrap';
 
 
 export default function SignIn() {
@@ -51,9 +51,10 @@ export default function SignIn() {
 		}
 	};
 
-	const fbSignIn = async () => {
-		let userBySignIn = await signInWithFacebook();
+	const gitSignIn = async () => {
+		let userBySignIn = await signInWithGithub();
 		if (userBySignIn) {
+			console.log(userBySignIn);
 			history.push('/home');
 		}
 	};
@@ -110,20 +111,20 @@ export default function SignIn() {
 				}
 			</div>
 		</form>
-			<div className="separator-wrapper">
+			{/* <div className="separator-wrapper">
 				<div className="separator">
 					<span>OR</span>
 				</div>
-			</div>
+			</div> */}
 
 			<div className="field-group">
-				<button className="link-social-login" onClick={fbSignIn}>
+				{/* <button className="link-social-login" onClick={gitSignIn}>
 					<img src={fb_img} alt="fb-logo"/>
-					Login with Facebook (beta)
-				</button>
+					SignIn with Github 
+				</button> */}
 				<button className="link-social-login" onClick={goolgeSignIn}>
 					<img src={google_img} alt="google-logo"/>
-					Login with Google
+					Sign-In with Google
 				</button>
 			</div>
 

@@ -1,4 +1,4 @@
-import { auth, googleProvider, facebookProvider } from "../firebase";
+import { auth, googleProvider, githubProvider } from "../firebase";
 
 export const signInWithGoogle = async () => {
   let user;
@@ -15,10 +15,10 @@ export const signInWithGoogle = async () => {
   return user;
 };
 
-export const signInWithFacebook = async () => {
+export const signInWithGithub = async () => {
   let user;
   await auth
-    .signInWithPopup(facebookProvider)
+    .signInWithPopup(githubProvider)
     .then((res) => {
       console.log(res.user);
       user = res.user;
