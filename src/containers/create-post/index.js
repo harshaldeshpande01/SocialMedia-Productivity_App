@@ -6,8 +6,6 @@ import { storage, db } from "../../firebase";
 import makeid from "../../helper/functions";
 
 import firebase from "firebase";
-// import { Card } from "rebass";
-import { Card, CardDeck } from "react-bootstrap";
 
 export default function CreatePost( {currentUser} ) {
 
