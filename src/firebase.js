@@ -1,12 +1,12 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBNOJeXAEdGM7glbVtnjRJDy8BFH7ODiYA",
-  authDomain: "socioprod-app.firebaseapp.com",
-  projectId: "socioprod-app",
-  storageBucket: "socioprod-app.appspot.com",
-  messagingSenderId: "481574330027",
-  appId: "1:481574330027:web:5a365dc40b26f45ee721ee"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: ""
+  appId: ""
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
